@@ -1,0 +1,11 @@
+Model Information:
+* title:	Cult's Summoning
+* source:	https://sketchfab.com/3d-models/cults-summoning-fe9570a322db40ebb7eaa8fe7f9962be
+* author:	JoshDolores (https://sketchfab.com/JoshDolores)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Cult's Summoning" (https://sketchfab.com/3d-models/cults-summoning-fe9570a322db40ebb7eaa8fe7f9962be) by JoshDolores (https://sketchfab.com/JoshDolores) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
