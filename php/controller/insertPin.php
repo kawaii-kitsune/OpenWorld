@@ -36,5 +36,5 @@ else{
 echo "txtΧ should not be empty";
 die();
 }
-header('Location: http://localhost/project');
+header('Location: http://localhost/OpenWorld');
 ?>

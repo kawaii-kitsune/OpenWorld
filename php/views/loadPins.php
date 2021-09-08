@@ -12,7 +12,23 @@ if ($conn->query($sql)){
 <script>
 var marker = L.marker([<?php echo $row['x']; ?>, <?php echo $row['y']; ?>]).addTo(map);
 marker.bindPopup(
-    '<div class="colums is-centered"><div class="column model-viewer"><model-viewer src="test-models/naos.glb" alt="A 3D model of an astronaut" ar ar-modes="webxr scene-viewer quick-look" environment-image="neutral" auto-rotate camera-controls> <button slot="ar-button" id="ar-button">View in your space</button></model-viewer></div><div class="column"><span class="is-size-6"><?php echo  $row['fldName']; ?></span></div><div class="column is-centered"><a href="http://" target="_blank" class="is-centered" rel="noopener noreferrer"><button class="button is-link is-centered">Navigate</button></a></div></div>'
+    '<div class="colums is-centered">'+
+    '<div class="column model-viewer">'+
+    '<model-viewer src="test-models/naos.glb" alt="A 3D model of an astronaut" ar ' +
+    'ar-modes="webxr scene-viewer quick-look" environment-image="neutral" auto-rotate camera-controls id="model-viewer-<?php echo  $row['id']; ?>"> '+
+    '<button slot="ar-button" id="ar-button">View in your space</button>'+
+    '</model-viewer>'+
+    '</div>'+
+    '<div class="column">'+
+    '<span class="is-size-6"><?php echo  $row['fldName']; ?></span>'+
+    '</div>'+
+    '<div class="column is-centered">'+
+    '<a href="http://" target="_blank" class="is-centered" rel="noopener noreferrer">'+
+    '<button class="button is-link is-centered" value="<?php echo  $row['id']; ?>">Navigate</button>'+
+    '<button class="button is-outlined mx-2 model-info-button" value="<?php echo  $row['id']; ?>"><i class="fas fa-question mx-2"></i> info</button>'+
+    '</a>'+
+    '</div>'+
+    '</div>'
     );
     
 </script>

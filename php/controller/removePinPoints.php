@@ -1,8 +1,6 @@
-
-
 <?php ?>
 <script>
-    console.log('entered');
+console.log('entered');
 </script>
 <?php
 $host = "localhost";
@@ -30,16 +28,11 @@ $pinId=$_GET['pinId'];
 $sql = "UPDATE `pinscoord` SET available=false WHERE `pinscoord`.`id` = $pinId;";
 if ($conn->query($sql) === TRUE) {
   ?>
-  <!-- <script>
-    var mapsection=document.getElementById('map-section');
-    $().load(mapsection);
-  </script> -->
-  <?php
-    
+<?php
     echo "Record altered successfully";
   } else {
     echo "Error deleting record: " . $conn->error;
   }
 $conn->close();
-header('Location: http://localhost/project');
+header('Location: http://localhost/OpenWorld');
 ?>
