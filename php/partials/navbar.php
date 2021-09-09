@@ -37,6 +37,25 @@
                     </a>
                 </div>
             </div>
+            <div class=" navbar-item is-align-self-center mx-2">
+
+                <div class="columns">
+                    <div class="column">
+                        <label class="radio column">
+                        <b class="theme-icon"><i class="fas fa-sun mx-1 is-active" id="sun"></i></b>
+                    </label>
+                    </div>
+                    <div class="column">
+                        <label class="radio column">
+                        <b class="theme-icon"><i class="fas fa-moon mx-1" id="moon"></i></b>
+                    </label>
+                    </div>
+                    
+                </div>
+
+            </div>
+
+
         </div>
         <?php 
 // Check if the user is already logged in, if yes make logout button appear

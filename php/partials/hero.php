@@ -9,13 +9,6 @@
                     A different Way to Visit
                 </p>
             </div>
-            <div class="column is-half has-text-dark">
-                <p>
-                    <!-- <model-viewer id="toggle-model-hero" src="test-models/matilda/scene.gltf"
-                        alt="A 3D model of a shishkebab" shadow-intensity="1" camera-controls auto-rotate> -->
-
-                </p>
-            </div>
         </div>
     </div>
 </section>

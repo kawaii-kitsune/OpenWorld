@@ -23,10 +23,10 @@ marker.bindPopup(
     '<span class="is-size-6"><?php echo  $row['fldName']; ?></span>'+
     '</div>'+
     '<div class="column is-centered">'+
-    '<a href="http://" target="_blank" class="is-centered" rel="noopener noreferrer">'+
+    '<a href="/OpenWorld/php/views/3dXdom/model-view.php" target="_blank" class="is-centered" rel="noopener noreferrer">'+
     '<button class="button is-link is-centered" value="<?php echo  $row['id']; ?>">Navigate</button>'+
-    '<button class="button is-outlined mx-2 model-info-button" value="<?php echo  $row['id']; ?>"><i class="fas fa-question mx-2"></i> info</button>'+
     '</a>'+
+    '<button class="button is-outlined mx-2 model-info-button" value="<?php echo  $row['id']; ?>"><i class="fas fa-question mx-2"></i> info</button>'+
     '</div>'+
     '</div>'
     );

@@ -1,5 +1,5 @@
 <?php require 'controller/connDB.php'; ?>
-<aside class="menu column is-3 mt-0">
+<aside class="menu column is-4 mt-0">
     <p class="menu-label has-text-centered">
         General
     </p>
@@ -13,7 +13,7 @@
     </p>
     <ul class="menu-list is-centered " id="pins-view">
         <div class="overflow-scroll">
-            <?php require 'views/removePinPoints.php' ?>
+            <?php require 'views/pinPointTiles.php' ?>
         </div>
 
     </ul>

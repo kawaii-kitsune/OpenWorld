@@ -15,14 +15,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
 
 <script>
-    $(window).load(function() {
-		// Animate loader off screen
-		$(".se-pre-con").fadeOut("slow");;
-	});
+$(window).load(function() {
+    // Animate loader off screen
+    $(".se-pre-con").fadeOut("slow");;
+});
 </script>
-	
-<body >
-<div class="se-pre-con"></div>
+
+<body>
+    <div class="se-pre-con"></div>
     <main>
         <?php require 'php/partials/navbar.php'?>
         <?php require 'php/partials/hero.php'?>
@@ -34,12 +34,39 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         </section>
         <?php require 'php/views/modal.php'?>
         <?php require 'php/partials/quickview.php'?>
+        <!-- ΠΑΙΖΕΙ ΝΑ ΓΙΝΕΙ ΚΑΤΙ ΑΥΤΟ ΣΤΟ UI
+            <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    <p class="heading">Tweets</p>
+                    <p class="title">3,456</p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered">
+                <div>
+                    <p class="heading">Following</p>
+                    <p class="title">123</p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered">
+                <div>
+                    <p class="heading">Followers</p>
+                    <p class="title">456K</p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered">
+                <div>
+                    <p class="heading">Likes</p>
+                    <p class="title">789</p>
+                </div>
+            </div>
+        </nav> -->
         <?php require 'php/partials/footer.php'?>
 
     </main>
     <?php require 'php/partials/scripts.php'?>
     <?php require 'php/views/loadPins.php'?>
-    
+
 </body>
 
 </html>
