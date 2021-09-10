@@ -1,7 +1,7 @@
 <nav class="navbar is-transparent" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="/OpenWorld">
-            <img src="https://drive.google.com/uc?id=1VZYSJUNICG-G7pOhDztorcNAd6Sm2zbL">
+            <img src="/OpenWorld/assets/openWorldLine.png">
         </a>
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">

@@ -2,7 +2,7 @@
     <div class="columns">
         <div class="column is-half is-align-items-center">
             <div class="columns">
-                <img src="assets/logo.png" alt="">
+                <img src="/OpenWorld/assets/logo.png" alt="">
             </div>
             <div class="columns">
                 <p class="is-size-8">

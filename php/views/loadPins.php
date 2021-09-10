@@ -16,7 +16,7 @@ marker.bindPopup(
     '<div class="column model-viewer">'+
     '<model-viewer src="test-models/naos.glb" alt="A 3D model of an astronaut" ar ' +
     'ar-modes="webxr scene-viewer quick-look" environment-image="neutral" auto-rotate camera-controls id="model-viewer-<?php echo  $row['id']; ?>"> '+
-    '<button slot="ar-button" id="ar-button">View in your space</button>'+
+    
     '</model-viewer>'+
     '</div>'+
     '<div class="column">'+
@@ -26,7 +26,10 @@ marker.bindPopup(
     '<a href="/OpenWorld/php/views/3dXdom/model-view.php" target="_blank" class="is-centered" rel="noopener noreferrer">'+
     '<button class="button is-link is-centered" value="<?php echo  $row['id']; ?>">Navigate</button>'+
     '</a>'+
-    '<button class="button is-outlined mx-2 model-info-button" value="<?php echo  $row['id']; ?>"><i class="fas fa-question mx-2"></i> info</button>'+
+    
+    '<button class="button is-outlined mx-2 model-info-button" onclick="openNav()"'+
+    'value="<?php echo  $row['id']; ?>"><i class="fas fa-question mx-2"></i> info</button>'+
+    
     '</div>'+
     '</div>'
     );

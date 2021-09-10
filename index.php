@@ -28,8 +28,9 @@ $(window).load(function() {
         <?php require 'php/partials/hero.php'?>
         <section class="section" id="map-section">
             <div class="columns m-0">
-                <?php require 'php/control-box.php'?>
                 <?php require 'php/map.php'?>
+                <?php require 'php/control-box.php'?>
+                
             </div>
         </section>
         <?php require 'php/views/modal.php'?>
@@ -62,7 +63,7 @@ $(window).load(function() {
             </div>
         </nav> -->
         <?php require 'php/partials/footer.php'?>
-
+        <?php require 'php/partials/off-canvas.php'?>
     </main>
     <?php require 'php/partials/scripts.php'?>
     <?php require 'php/views/loadPins.php'?>
