@@ -1,13 +1,3 @@
-<?php
-// Initialize the session
-session_start();
- 
-// Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: /project/php/views/login.php");
-    exit;
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,12 +19,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 <body>
     <main>
-        <?php require 'partials/navbar.php'?>
+        <?php require '../partials/navbar.php'?>
 
         <section class="hero is-fullheight">
             <div class="hero-body">
                 <div class="container has-text-centered">
-                    <div class="columns is-8 is-variable ">
+                    <div class="columns is-12 is-variable ">
                         <div class="column is-two-thirds has-text-left">
                             <h1 class="title is-1">Contact Us</h1>
                             <p class="is-size-4">Communication is the key to a good Ui, so share your opinion to make a
@@ -49,11 +39,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                             </div>
                         </div>
                         <div class="column is-one-third has-text-left">
-                            <fieldset class="card columns is-12 is-half" style="margin-top:5%;margin-bottom:10%;">
+                            <fieldset class="card columns is-8 is-half" style="margin-top:5%;margin-bottom:10%;">
                                 <div class="card-content column">
                                     <legend class="title column">Contact Form</legend>
                                     <hr>
-                                    <form name="frmContact column" method="post" action="../controller/contactUs.php">
+                                    <form name="frmContact column" method="post"
+                                        action="../../controller/contactUs.php">
                                         <p>
                                             <label for="Name column" class="subtitle is-3">Name </label>
                                             <input class="input column is-half" type="text" name="txtName" id="txtName">

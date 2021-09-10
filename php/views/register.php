@@ -95,13 +95,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
 <html lang="en">
-<?php require '../partials/head.php'?>
+
+<head>
+    <link rel="icon" href="/OpenWorld/assets/favico.png" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.0.0/animate.min.css" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <script type="text/javascript" src="/OpenWorld/js/bulma.js"></script>
+    <link rel="stylesheet" href="/OpenWorld/css/style.css">
+
+    <title>OpenWorld</title>
+</head>
 
 <body>
     <main>
-        <?php require '../partials/navbar.php'?>
+
 
         <body>
+            <?php require '../views/partials/navbar.php'?>
+            <?php require '../views/partials/hero.php'?>
             <div class="columns is-centered">
                 <div class="column is-3 ">
                     <div class="wrapper box">
@@ -138,10 +153,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     </div>
                 </div>
             </div>
-            <?php require '../partials/footer.php'?>
+            <?php require '../views/partials/footer.php'?>
 
     </main>
-    <?php require '../partials/scripts.php'?>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/OpenWorld/js/dark-theme.js"></script>
 
 </body>
 

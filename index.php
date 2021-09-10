@@ -10,7 +10,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php require 'php/partials/head.php'?>
+<?php require 'php/views/partials/head.php'?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
 
@@ -24,17 +24,17 @@ $(window).load(function() {
 <body>
     <div class="se-pre-con"></div>
     <main>
-        <?php require 'php/partials/navbar.php'?>
-        <?php require 'php/partials/hero.php'?>
+        <?php require 'php/views/partials/navbar.php'?>
+        <?php require 'php/views/partials/hero.php'?>
         <section class="section" id="map-section">
             <div class="columns m-0">
-                <?php require 'php/map.php'?>
-                <?php require 'php/control-box.php'?>
-                
+                <?php require 'php/views/map.php'?>
+                <?php require 'php/views/control-box.php'?>
+
             </div>
         </section>
         <?php require 'php/views/modal.php'?>
-        <?php require 'php/partials/quickview.php'?>
+        <?php require 'php/views/partials/quickview.php'?>
         <!-- ΠΑΙΖΕΙ ΝΑ ΓΙΝΕΙ ΚΑΤΙ ΑΥΤΟ ΣΤΟ UI
             <nav class="level">
             <div class="level-item has-text-centered">
@@ -62,10 +62,10 @@ $(window).load(function() {
                 </div>
             </div>
         </nav> -->
-        <?php require 'php/partials/footer.php'?>
-        <?php require 'php/partials/off-canvas.php'?>
+        <?php require 'php/views/partials/footer.php'?>
+        <?php require 'php/views/partials/off-canvas.php'?>
     </main>
-    <?php require 'php/partials/scripts.php'?>
+    <?php require 'php/views/partials/scripts.php'?>
     <?php require 'php/views/loadPins.php'?>
 
 </body>

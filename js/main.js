@@ -25,7 +25,7 @@ function changeDate() {
     m = 0;
 
   timeRangeLabel.innerText = pad(h) + ':' + pad(m);
-  dateRangeLabel.innerText = Y + '-' + pad(M+1) + '-' + pad(D);
+  dateRangeLabel.innerText = Y + '-' + pad(M + 1) + '-' + pad(D);
 
   osmb.date(new Date(Y, M, D, h, m));
 }
@@ -56,12 +56,12 @@ changeDate();
 
 // init with day of year
 var Jan1 = new Date(now.getFullYear(), 0, 1);
-dateRange.value = Math.ceil((now-Jan1)/86400000);
+dateRange.value = Math.ceil((now - Jan1) / 86400000);
 
 timeRange.value = now.getHours();
 
 timeRange.addEventListener('change', onTimeChange);
-dateRange.addEventListener('change', onDateChange );
+dateRange.addEventListener('change', onDateChange);
 timeRange.addEventListener('input', onTimeChange);
 dateRange.addEventListener('input', onDateChange);
 
@@ -70,7 +70,7 @@ dateRange.addEventListener('input', onDateChange);
 // load extra information
 function ajax(url, callback) {
   var req = new XMLHttpRequest();
-  req.onreadystatechange = function() {
+  req.onreadystatechange = function () {
     if (req.readyState !== 4) {
       return;
     }
@@ -88,21 +88,21 @@ function ajax(url, callback) {
 function formatJSON(json) {
   var html = '';
   for (var key in json) {
-    html += '<em>'+ key +'</em> '+ json[key] +'<br>';
+    html += '<em>' + key + '</em> ' + json[key] + '<br>';
   }
   return html;
 }
 
-osmb.click(function(e) {
-  var url = 'https://data.osmbuildings.org/0.2/uejws863/feature/'+ e.feature +'.json';
-  ajax(url, function(json) {
-    var content = '<b>OSM ID '+ e.feature +'</b>';
+osmb.click(function (e) {
+  var url = 'https://data.osmbuildings.org/0.2/uejws863/feature/' + e.feature + '.json';
+  ajax(url, function (json) {
+    var content = '<b>OSM ID ' + e.feature + '</b>';
     for (var i = 0; i < json.features.length; i++) {
-      content += '<br><em>OSM Part ID</em> '+ json.features[i].id;
-      content += '<br>'+ formatJSON(json.features[i].properties.tags);
+      content += '<br><em>OSM Part ID</em> ' + json.features[i].id;
+      content += '<br>' + formatJSON(json.features[i].properties.tags);
     }
 
-    L.popup({ maxHeight:200, autoPanPaddingTopLeft:[50,50] })
+    L.popup({ maxHeight: 200, autoPanPaddingTopLeft: [50, 50] })
       .setLatLng(L.latLng(e.lat, e.lon))
       .setContent(content)
       .openOn(map);
@@ -127,7 +127,7 @@ map.on('click', function (e) {
   }
 });
 
-$('#control-add').on('click', ()=> {
+$('#control-add').on('click', () => {
   if (document.getElementById("control-add").classList.contains("is-light")) {
     document.getElementById("control-add").classList.remove("is-light");
   }
@@ -145,17 +145,6 @@ bulmaToast.setDefaults({
 })
 
 
-$('#sun').on('click', () => {
-  document.getElementById('moon').classList.remove('is-active');
-  document.getElementById('sun').classList.add('is-active');
-  changeCSS('https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css', 0);
-});
-$('#moon').on('click', () => {
-  document.getElementById('sun').classList.remove('is-active');
-  document.getElementById('moon').classList.add('is-active');
-  changeCSS('https://jenil.github.io/bulmaswatch/superhero/bulmaswatch.min.css', 0);
-});
-
 
 if (L.Browser.ielt9) {
   alert('Upgrade your browser, dude!');
@@ -171,17 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-function changeCSS(cssFile, cssLinkIndex) {
 
-  var oldlink = document.getElementsByTagName("link").item(cssLinkIndex);
-
-  var newlink = document.createElement("link");
-  newlink.setAttribute("rel", "stylesheet");
-  newlink.setAttribute("type", "text/css");
-  newlink.setAttribute("href", cssFile);
-
-  document.getElementsByTagName("head").item(cssLinkIndex).replaceChild(newlink, oldlink);
-}
 
 
 function goTo(x, y) {

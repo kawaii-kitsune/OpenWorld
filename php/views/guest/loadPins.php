@@ -1,5 +1,5 @@
 <?php 
-require 'php/controller/connDB.php'; 
+
 $sql = "SELECT * FROM pinscoord";
 if ($conn->query($sql)){
     $i=0;
