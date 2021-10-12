@@ -139,7 +139,14 @@ if it's not present, don't show loader */
   z-index: 9999;
   background: url(../assets/Preloader_11.gif) center no-repeat #fff;
 }
-
+.mapboxgl-popup-tip {
+  width:200px;
+}
 /* #pins-view {
   display: none;
 } */
+@media (max-width: 600px) {
+  #control-card{
+    display: none;
+  }
+}

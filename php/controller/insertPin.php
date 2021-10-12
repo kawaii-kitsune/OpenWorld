@@ -5,8 +5,8 @@ $txtY = filter_input(INPUT_POST, 'txtY');
 if (!empty($txtName)){
 if (!empty($txtΧ)){
 $host = "localhost";
-$dbusername = "babis";
-$dbpassword = "boohaha1!@#";
+$dbusername = "root";
+$dbpassword = "";
 $dbname = "db_contact";
 // Create connection
 $conn = new mysqli ($host, $dbusername, $dbpassword, $dbname);

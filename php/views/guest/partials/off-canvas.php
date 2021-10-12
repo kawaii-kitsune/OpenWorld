@@ -154,10 +154,10 @@ img {
 }
 </style>
 <div id="mySidenav" class="sidenav">
-    <div class="container">
+    <div id="offcanvasCont" class="container">
         <div class="columns">
             <div class="container">
-                <h5 id="is-size-5"><i class="fas fa-info-circle"></i> Όνομα Μνημείου</h5>
+                <h5 id="off-title"><i class="fas fa-info-circle"></i> Όνομα Μνημείου</h5>
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             </div>
 
@@ -165,7 +165,7 @@ img {
         <div class="columns">
             <model-viewer src="/OpenWorld/test-models/naos.glb" alt="A 3D model of an astronaut" ar
                 ar-modes="webxr scene-viewer quick-look" environment-image="neutral" auto-rotate camera-controls
-                id="model-viewer">
+                id="model-viewer-off">
             </model-viewer>
         </div>
         <div class="columns">
@@ -237,16 +237,3 @@ function showSlides(n) {
 </script>
 
 </div>
-
-
-<script>
-function openNav() {
-    document.getElementById("mySidenav").style.width = "400px";
-    document.getElementById("main").style.marginLeft = "400px";
-}
-
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("main").style.marginLeft = "0";
-}
-</script>

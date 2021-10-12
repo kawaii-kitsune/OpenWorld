@@ -4,7 +4,7 @@
 }
 
 img {
-  object-fit: cover;
+    object-fit: cover;
     vertical-align: middle;
 }
 
@@ -101,7 +101,7 @@ img {
 }
 
 .sidenav {
-  flex-wrap: wrap;
+    flex-wrap: wrap;
     align-content: center;
     height: 100%;
     width: 0;
@@ -154,18 +154,18 @@ img {
 }
 </style>
 <div id="mySidenav" class="sidenav">
-    <div class="container">
+    <div id="offcanvasCont" class="container">
         <div class="columns">
             <div class="container">
-                <h5 id="is-size-5"><i class="fas fa-info-circle"></i> Όνομα Μνημείου</h5>
+                <h5 id="off-title"><i class="fas fa-info-circle"></i> Όνομα Μνημείου</h5>
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             </div>
 
         </div>
         <div class="columns">
-            <model-viewer src="test-models/naos.glb" alt="A 3D model of an astronaut" ar
+            <model-viewer src="/OpenWorld/test-models/naos.glb" alt="A 3D model of an astronaut" ar
                 ar-modes="webxr scene-viewer quick-look" environment-image="neutral" auto-rotate camera-controls
-                id="model-viewer">
+                id="model-viewer-off">
             </model-viewer>
         </div>
         <div class="columns">
@@ -177,27 +177,27 @@ img {
                 publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
 
         </div>
-        
 
-            <div class="slideshow-container columns">
 
-                <div class="mySlides fade">                    
-                    <img src="https://picsum.photos/id/237/600/300" style="width:100%">                   
-                </div>
-                <div class="mySlides fade"> 
-                    <img src="https://picsum.photos/id/237/600/300" style="width:100%">
-                </div>
-                <div class="mySlides fade">
-                    <img src="https://picsum.photos/id/237/600/300" style="width:100%"> 
-                </div>
+        <div class="slideshow-container columns">
 
-                <a class="prev" onclick="plusSlides(-1)"><i class="fas fa-angle-double-left"></i></a>
-                <a class="next" onclick="plusSlides(1)"><i class="fas fa-angle-double-right"></i></a>
-                <br>
-
+            <div class="mySlides fade">
+                <img src="https://picsum.photos/id/237/600/300" style="width:100%">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://picsum.photos/id/237/600/300" style="width:100%">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://picsum.photos/id/237/600/300" style="width:100%">
             </div>
 
-        
+            <a class="prev" onclick="plusSlides(-1)"><i class="fas fa-angle-double-left"></i></a>
+            <a class="next" onclick="plusSlides(1)"><i class="fas fa-angle-double-right"></i></a>
+            <br>
+
+        </div>
+
+
 
     </div>
 </div>
@@ -238,15 +238,3 @@ function showSlides(n) {
 
 </div>
 
-
-<script>
-function openNav() {
-    document.getElementById("mySidenav").style.width = "400px";
-    document.getElementById("main").style.marginLeft = "400px";
-}
-
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("main").style.marginLeft = "0";
-}
-</script>

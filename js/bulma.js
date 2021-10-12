@@ -21,5 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   }
-
+  if($(".cookie-banner").length){
+    $(".cookie-banner").slideDown(2000);
+  }
 });

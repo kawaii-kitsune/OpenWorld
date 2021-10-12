@@ -15,7 +15,7 @@ if ($conn->query($sql)){
 
                 <div class="columns  is-align-items-center">
                     <div class="column is-three-quarters">
-                        <p class=""><?php echo  $row['fldName'];?> </p>
+                        <p id="pinPoint-tile-name-<?php echo  $row['id']; ?>"><?php echo  $row['fldName'];?> </p>
                     </div>
                     <div class="column is-one-quarter">
                         <span class="button is-link is-inverted is-hovered"
@@ -26,23 +26,16 @@ if ($conn->query($sql)){
                 </div>
                 <div class="columns is-align-items-center">
                     <a href="php/controller/removePinPoints.php?pinId=<?php echo  $row['id']; ?>">
-                        <button class="button is-danger is-outlined pinPointTile-button "
-                            id="<?php echo  $row['id'];?>" value="<?php echo  $row['id'];?>">
+                        <button class="button is-danger is-outlined pinPointTile-button " id="<?php echo  $row['id'];?>"
+                            value="<?php echo  $row['id'];?>">
                             <span class="is-size-7"> Remove Location </span>
                             <span class="icon is-small">
                                 <i class="fas fa-times"></i>
                             </span>
                         </button>
                     </a>
-                    <button class="button is-warning is-outlined pinPointTile-button my-2 mx-1"
-                        id="<?php echo  $row['id'];?>" value="<?php echo  $row['id'];?>">
-                        <span class="is-size-8">3XDOM </span>
-                        <span class="icon is-small">
-                            <i class="fas fa-paperclip"></i>
-                        </span>
-                    </button>
                     <button class="button is-success is-outlined pinPointTile-button my-2"
-                        id="<?php echo  $row['id'];?>" value="<?php echo  $row['id'];?>">
+                        id="<?php echo  $row['id'];?>" value="<?php echo  $row['id'];?>" onclick="modelModal(this)">
                         <span class="is-size-7">GLTF </span>
                         <span class="icon is-small">
                             <i class="fas fa-paperclip"></i>
@@ -61,7 +54,7 @@ if ($conn->query($sql)){
     <div class="box">
         <div class="container m-2">
             <div class="col-4 pinPointTile pinPointTile-<?php echo  $row['id'];?> m-2">
-                <p class='has-text-grey-light'><?php echo  $row['fldName'];?> </p>
+                <p id="pinPoint-tile-name-<?php echo  $row['id']; ?>" class='has-text-grey-light'><?php echo  $row['fldName'];?> </p>
                 <a href="php/controller/remakePin.php?pinId=<?php echo  $row['id']; ?>">
                     <button class="button is-info is-outlined pinPointTile-button" id="<?php echo  $row['id'];?>"
                         value="<?php echo  $row['id'];?>">
@@ -71,20 +64,14 @@ if ($conn->query($sql)){
                         </span>
                     </button>
                 </a>
-                <button class="button is-warning is-outlined pinPointTile-button my-2 mx-1"
-                        id="<?php echo  $row['id'];?>" value="<?php echo  $row['id'];?>">
-                        <span class="is-size-8">3XDOM </span>
-                        <span class="icon is-small">
-                            <i class="fas fa-paperclip"></i>
-                        </span>
-                    </button>
-                    <button class="button is-success is-outlined pinPointTile-button my-2"
-                        id="<?php echo  $row['id'];?>" value="<?php echo  $row['id'];?>">
-                        <span class="is-size-7">GLTF </span>
-                        <span class="icon is-small">
-                            <i class="fas fa-paperclip"></i>
-                        </span>
-                    </button>
+
+                <button class="button is-success is-outlined pinPointTile-button my-2" id="<?php echo  $row['id'];?>"
+                    value="<?php echo  $row['id'];?>" onclick="modelModal(this)">
+                    <span class="is-size-7">GLTF </span>
+                    <span class="icon is-small">
+                        <i class="fas fa-paperclip"></i>
+                    </span>
+                </button>
             </div>
         </div>
     </div>

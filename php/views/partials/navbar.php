@@ -151,11 +151,8 @@ else{
                 <div class="navbar-end">
                     <div class="navbar-item">
                         <div class="buttons">
-                            <a class="button is-primary" href="/OpenWorld/php/views/register.php">
-                                <strong>Sign up</strong>
-                            </a>
-                            <a class="button is-light" href="/OpenWorld/php/views/login.php">
-                                Log in
+                            <a class="button is-primary" href="/OpenWorld/php/views/login.php">
+                            <i class="fas fa-user-shield mx-2"></i><strong>Admin</strong>
                             </a>
                         </div>
                     </div>
