@@ -9,7 +9,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 
     <div class="navbar-brand">
         <a class="navbar-item" href="/OpenWorld">
-            <img src="/OpenWorld/assets/openWorldLine.png">
+            <img src="/OpenWorld/assets/images/openWorldLine.png">
         </a>
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -90,7 +90,7 @@ else{
 
             <div class="navbar-brand">
                 <a class="navbar-item" href="/OpenWorld">
-                    <img src="/OpenWorld/assets/openWorldLine.png">
+                    <img src="/OpenWorld/assets/images/openWorldLine.png">
                 </a>
 
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
@@ -149,6 +149,13 @@ else{
 
                 </div>
                 <div class="navbar-end">
+                <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-link" href="/OpenWorld/php/views/guest/relics_search.php">
+                            <i class="fas fa-search mx-2"></i><strong>Relics Search</strong>
+                            </a>
+                        </div>
+                    </div>
                     <div class="navbar-item">
                         <div class="buttons">
                             <a class="button is-primary" href="/OpenWorld/php/views/login.php">

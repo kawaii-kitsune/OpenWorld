@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Εξυπηρετητής: 127.0.0.1
--- Χρόνος δημιουργίας: 08 Σεπ 2021 στις 08:49:09
+-- Χρόνος δημιουργίας: 17 Νοε 2021 στις 13:16:01
 -- Έκδοση διακομιστή: 10.4.20-MariaDB
 -- Έκδοση PHP: 8.0.9
 
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Βάση δεδομένων: `db_contact`
 --
+CREATE DATABASE IF NOT EXISTS `db_contact` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `db_contact`;
+
+-- --------------------------------------------------------
+
+--
+-- Δομή πίνακα για τον πίνακα `images`
+--
+
+DROP TABLE IF EXISTS `images`;
+CREATE TABLE `images` (
+  `id` int(11) NOT NULL,
+  `URL` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Άδειασμα δεδομένων του πίνακα `images`
+--
+
+INSERT INTO `images` (`id`, `URL`) VALUES
+(14, 'https://www.cretanbeaches.com/images/stories/monasteries/churches/heraklion/monofatsi/onisimos/DSC_0044.JPG'),
+(14, 'https://lh3.googleusercontent.com/proxy/m08_QwJ-XXhKeTBJZBDmZt1khiKAttu16BxgB0AXmVFTvJa9dGTj8Hdf1F1s3v8_qKJmb_hMNi4TccXv67tNHKtHtW4o0-HrM_ub-vH_A0Z6q3VgbH4B043EcNjcHYgZ1Z-c'),
+(14, 'https://www.cretanbeaches.com/images/stories/monasteries/churches/heraklion/monofatsi/onisimos/DSC_0044.JPG');
 
 -- --------------------------------------------------------
 
@@ -27,27 +50,24 @@ SET time_zone = "+00:00";
 -- Δομή πίνακα για τον πίνακα `pinscoord`
 --
 
+DROP TABLE IF EXISTS `pinscoord`;
 CREATE TABLE `pinscoord` (
   `id` int(11) NOT NULL,
   `fldName` varchar(255) NOT NULL,
   `x` double NOT NULL,
   `y` double NOT NULL,
-  `available` tinyint(1) NOT NULL DEFAULT 1
+  `available` tinyint(1) NOT NULL DEFAULT 1,
+  `GLTF` text NOT NULL,
+  `info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Άδειασμα δεδομένων του πίνακα `pinscoord`
 --
 
-INSERT INTO `pinscoord` (`id`, `fldName`, `x`, `y`, `available`) VALUES
-(5, 'Φρουριο Κουλε', 35.34378831453463, 25.136345660441037, 1),
-(6, 'Λιμενας Ηρακλειου', 35.34320770739605, 25.13773245511561, 1),
-(7, 'Αρχαιολογικο Μουσειο', 35.33913677662063, 25.13741177784016, 1),
-(9, 'Καθεδρικός Ναός Αγίου Τίτου', 35.33979317166969, 25.134252855205524, 1),
-(10, 'Μουσείο Αρχαίας Ελληνικής Τεχνολογίας', 35.34122751304398, 25.135597502812743, 1),
-(11, 'Ναός Αγίας Αικατερίνης', 35.34253568292536, 25.132038664807897, 1),
-(12, 'Θεατρικός Σταθμός Ηρακλείου', 35.340864109769946, 25.140016790748465, 1),
-(13, 'Μουσείο Φυσικής Ιστορίας', 35.34188765159288, 25.126681888845084, 1);
+INSERT INTO `pinscoord` (`id`, `fldName`, `x`, `y`, `available`, `GLTF`, `info`) VALUES
+(14, 'Άγιος Ονήσιμος', 25.157741030198054, 35.14573890814171, 1, '/OpenWorld/test-models/onisimos.glb', 'Ο ναός που οι Κρητικοί ονομάζουν Ανέσιμος, είναι αρκετά παλιός και είχε καταρρεύσει στο πέρασμα των αιώνων. Μάλιστα, η πυκνή βλάστηση είχε καλύψει το μέρος που είχε χτιστεί αρχικά ο μικρός ναός. Ωστόσο, πριν από χρόνια κάποιος δικαστής, που κινούνταν στην περιοχή είχε ένα ατύχημα με το αυτοκίνητο του. Συγκεκριμένα, το όχημα του έπεσε ακριβώς πάνω στο σημείο που βρίσκονταν τα ερείπια του ναού. Ο δικαστής το θεώρησε θαύμα και έκτισε ξανά το παλιό εκκλησάκι θέλοντας έτσι να ευχαριστήσει τον Άγιο, που τον έσωσε από το θάνατο.  Είναι χαρακτηριστικό ότι έξω από το εκκλησάκι υπάρχει πηγάδι, το οποίο παλαιότερα είχε πάρα πολύ νερό, το οποίο συνήθως ξεχείλιζε και οι περαστικοί το χρησιμοποιούσαν για να πίνουν και να ξεδιψάνε. Ωστόσο, σύμφωνα με την παράδοση, το νερό λιγόστεψε όταν μια γυναίκα έβαλε μέσα τα πόδια της για να τα πλύνει, πράγμα που θεωρήθηκε ύβρις προς τον άγιο, που προσέφερε το καθαρό νερό για να ξεδιψάσουν οι πιστοί. Ωστόσο, οι ντόπιοι λένε πως ακόμη και σήμερα το πηγάδι έχει λίγο νερό για όσους το έχουν ανάγκη.'),
+(15, 'Random point', 25.134918696959573, 35.3406431375919, 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -55,6 +75,7 @@ INSERT INTO `pinscoord` (`id`, `fldName`, `x`, `y`, `available`) VALUES
 -- Δομή πίνακα για τον πίνακα `tbl_contact`
 --
 
+DROP TABLE IF EXISTS `tbl_contact`;
 CREATE TABLE `tbl_contact` (
   `id` int(11) NOT NULL,
   `fldName` int(50) NOT NULL,
@@ -77,6 +98,7 @@ INSERT INTO `tbl_contact` (`id`, `fldName`, `fldEmail`, `fldPhone`, `fldMessage`
 -- Δομή πίνακα για τον πίνακα `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
@@ -122,7 +144,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT για πίνακα `pinscoord`
 --
 ALTER TABLE `pinscoord`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT για πίνακα `tbl_contact`

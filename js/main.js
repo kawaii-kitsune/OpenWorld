@@ -143,10 +143,10 @@ function loadModel(x, y, url, id) {
   const modelAsMercatorCoordinate = mapboxgl.MercatorCoordinate.fromLngLat(
     modelOrigin,
     modelAltitude
-  );
-
-  // transformation parameters to position, rotate and scale the 3D model onto the map
-  const modelTransform = {
+    );
+     
+    // transformation parameters to position, rotate and scale the 3D model onto the map
+    const modelTransform = {
     translateX: modelAsMercatorCoordinate.x,
     translateY: modelAsMercatorCoordinate.y,
     translateZ: modelAsMercatorCoordinate.z,
@@ -154,103 +154,103 @@ function loadModel(x, y, url, id) {
     rotateY: modelRotate[1],
     rotateZ: modelRotate[2],
     /* Since the 3D model is in real world meters, a scale transform needs to be
-     * applied since the CustomLayerInterface expects units in MercatorCoordinates.
-     */
-    scale: modelAsMercatorCoordinate.meterInMercatorCoordinateUnits()
-  };
-
-  const THREE = window.THREE;
-
-  // configuration of the custom layer for a 3D model per the CustomLayerInterface
-  const customLayer = {
-    id: '3d-model-' + id,
+    * applied since the CustomLayerInterface expects units in MercatorCoordinates.
+    */
+    scale: modelAsMercatorCoordinate.meterInMercatorCoordinateUnits() 
+    };
+     
+    const THREE = window.THREE;
+     
+    // configuration of the custom layer for a 3D model per the CustomLayerInterface
+    const customLayer = {
+    id: '3d-model'+id,
     type: 'custom',
     renderingMode: '3d',
     onAdd: function (map, gl) {
-      this.camera = new THREE.Camera();
-      this.scene = new THREE.Scene();
-
-      // create two three.js lights to illuminate the model
-      const directionalLight = new THREE.DirectionalLight(0xffffff);
-      directionalLight.position.set(0, -70, 100).normalize();
-      this.scene.add(directionalLight);
-
-      const directionalLight2 = new THREE.DirectionalLight(0xffffff);
-      directionalLight2.position.set(0, 70, 100).normalize();
-      this.scene.add(directionalLight2);
-
-      // use the three.js GLTF loader to add the 3D model to the three.js scene
-      const loader = new THREE.GLTFLoader();
-      loader.load(
-        url,
-        (gltf) => {
-          this.scene.add(gltf.scene);
-        }
-      );
-      this.map = map;
-
-      // use the Mapbox GL JS map canvas for three.js
-      this.renderer = new THREE.WebGLRenderer({
-        canvas: map.getCanvas(),
-        context: gl,
-        antialias: true
-      });
-
-      this.renderer.autoClear = false;
+    this.camera = new THREE.Camera();
+    this.scene = new THREE.Scene();
+     
+    // create two three.js lights to illuminate the model
+    const directionalLight = new THREE.DirectionalLight(0xffffff);
+    directionalLight.position.set(0, x, y).normalize();
+    this.scene.add(directionalLight);
+     
+    const directionalLight2 = new THREE.DirectionalLight(0xffffff);
+    directionalLight2.position.set(0, 70, 100).normalize();
+    this.scene.add(directionalLight2);
+     
+    // use the three.js GLTF loader to add the 3D model to the three.js scene
+    const loader = new THREE.GLTFLoader();
+    loader.load(
+    url,
+    (gltf) => {
+    this.scene.add(gltf.scene);
+    }
+    );
+    this.map = map;
+     
+    // use the Mapbox GL JS map canvas for three.js
+    this.renderer = new THREE.WebGLRenderer({
+    canvas: map.getCanvas(),
+    context: gl,
+    antialias: true
+    });
+     
+    this.renderer.autoClear = false;
     },
     render: function (gl, matrix) {
-      const rotationX = new THREE.Matrix4().makeRotationAxis(
-        new THREE.Vector3(1, 0, 0),
-        modelTransform.rotateX
-      );
-      const rotationY = new THREE.Matrix4().makeRotationAxis(
-        new THREE.Vector3(0, 1, 0),
-        modelTransform.rotateY
-      );
-      const rotationZ = new THREE.Matrix4().makeRotationAxis(
-        new THREE.Vector3(0, 0, 1),
-        modelTransform.rotateZ
-      );
-
-      const m = new THREE.Matrix4().fromArray(matrix);
-      const l = new THREE.Matrix4()
-        .makeTranslation(
-          modelTransform.translateX,
-          modelTransform.translateY,
-          modelTransform.translateZ
-        )
-        .scale(
-          new THREE.Vector3(
-            modelTransform.scale,
-            -modelTransform.scale,
-            modelTransform.scale
-          )
-        )
-        .multiply(rotationX)
-        .multiply(rotationY)
-        .multiply(rotationZ);
-
-      this.camera.projectionMatrix = m.multiply(l);
-      this.renderer.resetState();
-      this.renderer.render(this.scene, this.camera);
-      this.map.triggerRepaint();
+    const rotationX = new THREE.Matrix4().makeRotationAxis(
+    new THREE.Vector3(1, 0, 0),
+    modelTransform.rotateX
+    );
+    const rotationY = new THREE.Matrix4().makeRotationAxis(
+    new THREE.Vector3(0, 1, 0),
+    modelTransform.rotateY
+    );
+    const rotationZ = new THREE.Matrix4().makeRotationAxis(
+    new THREE.Vector3(0, 0, 1),
+    modelTransform.rotateZ
+    );
+     
+    const m = new THREE.Matrix4().fromArray(matrix);
+    const l = new THREE.Matrix4()
+    .makeTranslation(
+    modelTransform.translateX,
+    modelTransform.translateY,
+    modelTransform.translateZ
+    )
+    .scale(
+    new THREE.Vector3(
+    modelTransform.scale,
+    -modelTransform.scale,
+    modelTransform.scale
+    )
+    )
+    .multiply(rotationX)
+    .multiply(rotationY)
+    .multiply(rotationZ);
+     
+    this.camera.projectionMatrix = m.multiply(l);
+    this.renderer.resetState();
+    this.renderer.render(this.scene, this.camera);
+    this.map.triggerRepaint();
     }
-  };
-
-  map.on('style.load', () => {
+    };
+     
+    map.on('style.load', () => {
     map.addLayer(customLayer, 'waterway-label');
-  });
+    });
 }
 function loadMarker(x, y, url, id, fldname) {
   var marker = new mapboxgl.Marker().setLngLat([x, y]).addTo(map);
   marker.setPopup(new mapboxgl.Popup().setHTML(
     '<div class="colums is-centered">' +
-    '<div class="column model-viewer">' +
-    '<model-viewer src=' + url + ' alt="A 3D model of an astronaut" ar ' +
-    'ar-modes="webxr scene-viewer quick-look" environment-image="neutral" auto-rotate camera-controls id="model-viewer-' + id + '"> ' +
+    // '<div class="column model-viewer">' +
+    // '<model-viewer src=' + url + ' alt="A 3D model of an astronaut" ar ' +
+    // 'ar-modes="webxr scene-viewer quick-look" environment-image="neutral" auto-rotate camera-controls id="model-viewer-' + id + '"> ' +
 
-    '</model-viewer>' +
-    '</div>' +
+    // '</model-viewer>' +
+    // '</div>' +
     '<div class="column">' +
     '<span class="is-size-6"id="name-' + id + '">' + fldname + '</span>' +
     '</div>' +
@@ -261,7 +261,9 @@ function loadMarker(x, y, url, id, fldname) {
 
     '<button class="button is-outlined mx-2 model-info-button" onclick="openNav(this)" ' +
     'value=' + id + '><i class="fas fa-question mx-2"></i> info</button>' +
-
+    '<a href="/OpenWorld/php/views/bonanza.php?modelId=' + fldname + '" target="_blank" class="is-centered" rel="noopener noreferrer">' +
+    '<button class="button is-warning is-centered" value="' + id + '">Relics</button>' +
+    '</a>' +
     '</div>' +
     '</div>').setMaxWidth("330px"));
 }
@@ -279,15 +281,15 @@ function openNav(e) {
   
   
   // document.getElementById("main").style.marginLeft = "400px";
-};
+}
 
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
   // document.getElementById("main").style.marginLeft = "0";
-};
+}
 function modelModal(e) {
   document.getElementById('locName').innerHTML = document.getElementById('pinPoint-tile-name-'+e.value).innerHTML;
   document.getElementById('modal-model').classList.add('is-active');
   document.getElementById("form-modal").action = 'php/controller/model.php?id=' + e.value;
 
-};
+}

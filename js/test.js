@@ -14,9 +14,7 @@ import {
 import {
     DRACOLoader
 } from 'https://cdn.skypack.dev/three@0.133.1/examples/jsm/loaders/DRACOLoader.js';
-// import { XRControllerModelFactory } from '../js/XRControllerModelFactory.js';
 import { XRControllerModelFactory } from 'https://cdn.skypack.dev/three@0.133.1/examples/jsm/webxr/XRControllerModelFactory.js';
-import * as BABYLON from 'https://cdn.babylonjs.com/babylon.js';
 
 var canvas = document.querySelector('#c');
 var renderer = new THREE.WebGLRenderer({
@@ -31,7 +29,7 @@ var camera = new THREE.PerspectiveCamera(fov, aspect, near, far)
 const dolly = new THREE.Object3D();
 dolly.position.z = 0.1;
 dolly.add(camera);
-scene.add(dolly);
+// scene.add(dolly);
 var dummyCam = new THREE.Object3D();
 camera.add(dummyCam);
 
@@ -66,54 +64,31 @@ function enableXR() {
     document.getElementById('VRButton').style.background = 'rgb(0, 0, 0) none repeat scroll 0% 0%'
     const controllers = buildControllers();
     
-    const self = this;
-
+    // console.log(this);sa
 
     function onSelectStart() {
-        console.log('trigger');
-        this.children[0].scale.z = 10;
-        tempMatrix.identity().extractRotation(this.matrixWorld);
-
-        raycaster.ray.origin.setFromMatrixPosition(this.matrixWorld);
-        raycaster.ray.direction.set(0, 0, - 1).applyMatrix4(tempMatrix);
-        intersects = raycaster.intersectObjects(scene.children, false);
-        if (intersects.length > 0) {
-
-            this.children[0].scale.z = intersects[0].distance;
-        }
-
-        console.log(intersects)
         this.userData.selectedPressed = true;
-        console.log('squeeze');
-    }
-
-    function onSelectEnd() {
-        console.log(intersects[0].point)
-
-        this.children[0].scale.z = 0;
-
+      }
+    
+      function onSelectEnd() {
         this.userData.selectedPressed = false;
-    }
-    function onSqueezStart() {
-        console.log('squeeze');
-        
+      }
+      function onSqueezStart() {
         this.userData.squeezePressed = true;
-
-    }
-
-    function onSqueezEnd() {
-        
+      }
+    
+      function onSqueezEnd() {
         this.userData.squeezePressed = false;
-    }
-    controllers.forEach((controller) => {
-        controller.addEventListener('selectstart', onSelectStart);
-
-        controller.addEventListener('selectend', onSelectEnd);
-        controller.addEventListener('squeezestart', onSqueezStart);
-
-        controller.addEventListener('squeezeend', onSqueezEnd);
+      }
+      controllers.forEach((controller) => {
+        controller.addEventListener("selectstart", onSelectStart);
+    
+        controller.addEventListener("selectend", onSelectEnd);
+        controller.addEventListener("squeezestart", onSqueezStart);
+    
+        controller.addEventListener("squeezeend", onSqueezEnd);
         // console.log(controller)
-    })
+      });
 
 }
 
@@ -132,23 +107,53 @@ function buildControllers() {
 
         scene.add(controller);
         controllers.push(controller);
-        controller.name = 'controller-' + i;
+        controller.name = "controller-" + i;
         const grip = renderer.xr.getControllerGrip(i);
         grip.add(controllerModelFactory.createControllerModel(grip));
         // console.log(grip);
-        scene.add(grip);
-
-    }
-    return controllers;
+        dolly.add(grip);
+        dolly.add(controller);
+        scene.add(dolly);
+      }
+    
+      return controllers;
 
 }
 function handleController(controller, delta) {
+    if (controller.userData.squeezePressed) {
+        const speed = 1;
+        dummyCam.updateMatrixWorld();
+        const quaternion = dolly.quaternion.clone();
+        dummyCam.matrixWorld.decompose(
+          dummyCam.position,
+          dolly.quaternion,
+          dummyCam.scale
+        );
+        dolly.translateZ(-delta * speed);
+        dolly.position.y = 0;
+        dolly.quaternion.copy(quaternion);
+      } else {
+      }
     
+      if (controller.userData.selectedPressed) {
+        controller.children[0].scale.z = 10;
+        tempMatrix.identity().extractRotation(controller.matrixWorld);
+    
+        raycaster.ray.origin.setFromMatrixPosition(controller.matrixWorld);
+        raycaster.ray.direction.set(0, 0, -1).applyMatrix4(tempMatrix);
+        intersects = raycaster.intersectObjects(scene.children, false);
+        if (intersects.length > 0) {
+          controller.children[0].scale.z = intersects[0].distance;
+        }
+        // console.log(intersects);
+      } else {
+        controller.children[0].scale.z = 0;
+      }
 
 }
 
 function addGround() {
-    var groundTexture = new THREE.TextureLoader().load('/OpenWorld/assets/floor.png');
+    var groundTexture = new THREE.TextureLoader().load('/OpenWorld/assets/images/floor.png');
     groundTexture.wrapS = groundTexture.wrapT = THREE.RepeatWrapping;
     groundTexture.repeat.set(10000, 10000);
     groundTexture.anisotropy = 16;
@@ -195,11 +200,15 @@ async function getUrl() {
 
 function addLight() {
     const color = 0xFFFFFF;
-    const intensity = 2;
+    const intensity = 1;
     const light = new THREE.DirectionalLight(color, intensity);
     light.position.set(-1, 2, 4);
     light.name = "DirectionalLight" + color;
     scene.add(light);
+    const light2 = new THREE.AmbientLight(color, intensity);
+    light2.position.set(3, 2, 4);
+    light2.name = "AmbientLight" + color;
+    scene.add(light2);
 }
 
 
@@ -216,37 +225,36 @@ function resizeRendererToDisplaySize(renderer) {
 
 
 function render() {
-    
     var delta = clock.getDelta();
-    if (!renderer.xr.isPresenting) {
-        if (resizeRendererToDisplaySize(renderer)) {
-            const canvas = renderer.domElement;
-            camera.aspect = canvas.clientWidth / canvas.clientHeight;
-            camera.updateProjectionMatrix();
-        }
+  if (!renderer.xr.isPresenting) {
+    if (resizeRendererToDisplaySize(renderer)) {
+      const canvas = renderer.domElement;
+      camera.aspect = canvas.clientWidth / canvas.clientHeight;
+      camera.updateProjectionMatrix();
+      // camControls.update(delta);
     }
-    else{
-        if (controllers != null) {
-            const self = this;
-            controllers.forEach((controller) => {
-            handleController(controller, delta);
-            });
-        }
-    }
-    // handleController(controller,delta);
     camControls.update(delta);
     renderer.render(scene, camera);
     renderer.setAnimationLoop(render);
+  } else {
+    if (controllers != null) {
+      controllers.forEach((controller) => {
+        handleController(controller, delta);
+      });
+    } else {
+      const controllers = buildControllers();
+      // camera.add(controllers);
+      controllers.forEach((controller) => {
+        handleController(controller, delta);
+      });
+    }
+    renderer.render(scene, camera);
+    renderer.xr.setAnimationLoop(render);
+  }
+    
 }
 
 document.onkeyup = function (e) {
-    if (e.which == 77) {
-        render();
-        canvas.toBlob((blob) => {
-            saveBlob(blob, `screencapture-${canvas.width}x${canvas.height}.png`);
-
-        });
-    }
     if (e.which == 84) {
         if (camControls.enabled) {
             camControls.enabled = false;
@@ -277,8 +285,8 @@ function addModel(data) {
     const loader = new GLTFLoader();
 
     loader.load(data, function (gltf) {
-        gltf.scene.position.set(0, -1.2, 0);
-        gltf.scene.rotation.set(-0.26, 0.9, 0.15);
+        gltf.scene.position.set(3, 0, 0);
+        gltf.scene.rotation.set(0, 0, 0);
         scene.add(gltf.scene);
 
     },
@@ -295,27 +303,7 @@ function addModel(data) {
 
         });
 }
-// const elem = document.querySelector('#screenshot');
-// elem.addEventListener('click', () => {
-//     render();
-//     //   const canvas=document.getElementById("c");
-//     canvas.toBlob((blob) => {
-//         saveBlob(blob, `screencapture-${canvas.width}x${canvas.height}.png`);
 
-//     });
-// });
-
-function saveBlob() {
-    const a = document.createElement('a');
-    document.body.appendChild(a);
-    a.style.display = 'none';
-    return function saveData(blob, fileName) {
-        const url = window.URL.createObjectURL(blob);
-        a.href = url;
-        a.download = fileName;
-        a.click();
-    };
-}
 
 async function animate() {
     setCamControls();
@@ -323,7 +311,7 @@ async function animate() {
     createCube();
     addGround();
     addLight();
-    // await getUrl();
+    await getUrl();
     render();
 }
 

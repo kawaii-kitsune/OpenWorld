@@ -9,6 +9,6 @@ $_SESSION = array();
 session_destroy();
  
 // Redirect to login page
-header("location: /OpenWorld/php/guest.php");
+header("location: /OpenWorld/guest.php");
 exit;
 ?>

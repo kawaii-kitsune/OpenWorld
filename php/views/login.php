@@ -92,7 +92,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <html lang="en">
 
 <head>
-    <link rel="icon" href="/OpenWorld/assets/favico.png" type="image/x-icon" />
+    <link rel="icon" href="/OpenWorld/assets/images/favico.png" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.0.0/animate.min.css" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
@@ -115,7 +115,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <div class="card">
                         <div class="card-image ">
                             <figure class="image is-4by3 box">
-                                <img src="/OpenWorld/assets/tile.png" alt="Placeholder image">
+                                <img src="/OpenWorld/assets/images/tile.png" alt="Placeholder image">
                                 <a href="/OpenWorld/php/guest.php"><button class="button is-normal button box"
                                         style="bottom: 30%;"> <b>
                                             Enter <i class="fas fa-user-friends"></i>

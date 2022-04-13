@@ -25,11 +25,11 @@
             <div class="hero-body">
                 <div class="container has-text-centered">
                     <div class="columns is-12 is-variable ">
-                        <div class="column is-two-thirds has-text-left">
+                        <div class="column is-one-thirds has-text-left">
                             <h1 class="title is-1">Contact Us</h1>
                             <p class="is-size-4">Communication is the key to a good Ui, so share your opinion to make a
                                 better app!</p>
-                            <div class="social-media">
+                            <div class="social-media my-2">
                                 <a href="https://facebook.com" target="_blank" class="button is-light is-large"><i
                                         class="fab fa-facebook-square" aria-hidden="true"></i></a>
                                 <a href="https://instagram.com" target="_blank" class="button is-light is-large"><i
@@ -38,7 +38,7 @@
                                         class="fab fa-twitter" aria-hidden="true"></i></a>
                             </div>
                         </div>
-                        <div class="column is-one-third has-text-left">
+                        <div class="column is-two-third has-text-left">
                             <fieldset class="card columns is-8 is-half" style="margin-top:5%;margin-bottom:10%;">
                                 <div class="card-content column">
                                     <legend class="title column">Contact Form</legend>

@@ -1,4 +1,4 @@
-<section class="hero my-2">
+<section class="hero ">
     <div class="hero-body has-background-transparent ">
         <div class="columns">
             <div class="column">

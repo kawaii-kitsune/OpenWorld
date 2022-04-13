@@ -1,8 +1,8 @@
-<footer class="footer is-align-items-center">
+<footer class="footer is-align-items-center my-2 ">
     <div class="columns">
         <div class="column is-half is-align-items-center">
             <div class="columns">
-                <img src="/OpenWorld/assets/logo.png" alt="">
+                <img src="/OpenWorld/assets/images/logo.png" alt="">
             </div>
             <div class="columns">
                 <p class="is-size-8">
